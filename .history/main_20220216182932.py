@@ -1,7 +1,6 @@
 from tkinter import filedialog, Tk
 
 def FileChooser():
-    ContenDataFIle = ""
     try:
         filename = filedialog.askopenfilename(
             initialdir = './',
@@ -11,8 +10,9 @@ def FileChooser():
                          ('Todos los archivos', '*.*'))
         )
         print(filename)
-        with open(filename) as InFile:
-                ContenDataFIle = InFile.read().strip()
+        with open(filename) as inifile:
+                ContenDataFIle = inifile.read().strip()
+                ContenDataFIle = ContenDataFIle.lower()
                 print(str(ContenDataFIle))
     except:
         print('No se selecciono correctamente el archivo')

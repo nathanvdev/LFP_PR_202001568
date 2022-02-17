@@ -1,22 +1,40 @@
 from tkinter import filedialog, Tk
 
 def FileChooser():
-    ContenDataFIle = ""
-    try:
-        filename = filedialog.askopenfilename(
-            initialdir = './',
-            title = 'Selecciona un archivo',
-            filetypes = (('Archivos data', '*.data'),
-                         ('Archivos lfp', '*.lfp'),
-                         ('Todos los archivos', '*.*'))
+    Tk.withdraw()
+    File = filedialog.askopenfile(
+        title = "Seleccione un archivo",
+        initialdir = "/",
+        filetypes = (
+            ("Todos los Archivos", "*.*"),
+            ("Archivos data", "*.data")
+            ("Archivos lfp", "*.lfp")
         )
-        print(filename)
-        with open(filename) as InFile:
-                ContenDataFIle = InFile.read().strip()
-                print(str(ContenDataFIle))
-    except:
-        print('No se selecciono correctamente el archivo')
+    )
+
+    if File is None:
+        print("No se selecciono un archivo\n")
         return None
+    else:
+        ContentFile = File.read()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == '__main__':
@@ -31,8 +49,7 @@ if __name__ == '__main__':
 Elige una opción:  ------->  ''')
 
         if Menu == '1':
-            DataFile = FileChooser()
-
+            FileChooser()
         elif Menu == '2':
             pass
         elif Menu == '3':

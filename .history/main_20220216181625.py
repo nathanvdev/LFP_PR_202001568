@@ -1,7 +1,7 @@
 from tkinter import filedialog, Tk
 
 def FileChooser():
-    ContenDataFIle = ""
+    Tk.withdraw()
     try:
         filename = filedialog.askopenfilename(
             initialdir = './',
@@ -11,12 +11,21 @@ def FileChooser():
                          ('Todos los archivos', '*.*'))
         )
         print(filename)
-        with open(filename) as InFile:
-                ContenDataFIle = InFile.read().strip()
-                print(str(ContenDataFIle))
     except:
         print('No se selecciono correctamente el archivo')
         return None
+        
+def ImportDataFile():
+    ContenDataFIle = ''
+    try:
+        DataFile = FileChooser()
+        with open(DataFile) as iniFile:
+            ContenDataFIle = iniFile.read().strip()
+            ContenDataFIle = ContenDataFIle.lower()
+            print(str(ContenDataFIle))
+    except:
+        print('no sirvio')
+        
 
 
 if __name__ == '__main__':
@@ -31,7 +40,8 @@ if __name__ == '__main__':
 Elige una opción:  ------->  ''')
 
         if Menu == '1':
-            DataFile = FileChooser()
+            ImportDataFile()
+
 
         elif Menu == '2':
             pass

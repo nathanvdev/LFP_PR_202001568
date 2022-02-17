@@ -13,6 +13,7 @@ def FileChooser():
         print(filename)
         with open(filename) as InFile:
                 ContenDataFIle = InFile.read().strip()
+                ContenDataFIle = ContenDataFIle.lower()
                 print(str(ContenDataFIle))
     except:
         print('No se selecciono correctamente el archivo')
