@@ -1,7 +1,5 @@
 from tkinter import filedialog, Tk
-
 from Product import Product
-
 
 ProductsList = []
 
@@ -83,9 +81,9 @@ Elige una opción:  ------->  ''')
                 price = tmpProduct[1]
                 quant = tmpProduct[2]
                 ProductsList.append(Product(name, price, quant))
-
+            
             for P in ProductsList:
-                P.presentProduct()
+                 P[1].presentProduct()
 
             # print(Month_n)
             # print(Year_n)

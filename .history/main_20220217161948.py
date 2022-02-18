@@ -1,9 +1,7 @@
+from fileinput import filename
+from msilib.schema import File
+from sqlite3 import DatabaseError
 from tkinter import filedialog, Tk
-
-from Product import Product
-
-
-ProductsList = []
 
 def FileChooser():
     FileText = ''
@@ -32,7 +30,6 @@ def FileChooser():
         return None
 
 
-
 if __name__ == '__main__':
     while True:
         Menu = input ('''=============================
@@ -51,45 +48,24 @@ Elige una opción:  ------->  ''')
             Month = False
             Year = False
             Parenth = False
-            DataProducts = ''
 
             for Character in ContentDataFile:
-
-                if Character == ':':
-                    Month = True
-                    pass
-                if Character == '=':
-                    Year = True
-                if Character == '(':
-                    Parenth = True
-                if Character == ')':
-                    break
-
-                if not Month:
-                    Month_n += Character
-                if Month and not Year and Character != ':':
-                    Year_n += Character
-                if Parenth and Character != '(' and Character !='[' and Character != ']':
-                    DataProducts += Character
+                if not Parenth and not Year:
+                    if Character != ':':
+                        Month_n += Character
+                    else:
+                        Year = True
+                        pass
+                if Year and not Parenth:
+                    if Character != '=' :
+                        Year_n += Character
+                    else:
+                        Parenth = True
                     
+                        
             
-            DataProducts = DataProducts.split(';')
-            DataProducts.pop()
-
-            for Prroduct in DataProducts:
-
-                tmpProduct = Prroduct.split(',')
-                name = tmpProduct[0]
-                price = tmpProduct[1]
-                quant = tmpProduct[2]
-                ProductsList.append(Product(name, price, quant))
-
-            for P in ProductsList:
-                P.presentProduct()
-
-            # print(Month_n)
-            # print(Year_n)
-            # print(DataProducts[1])
+            print(Month_n)
+            print(Year_n)
 
 
 

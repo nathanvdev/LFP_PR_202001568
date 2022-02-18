@@ -1,9 +1,7 @@
+from fileinput import filename
+from msilib.schema import File
+from sqlite3 import DatabaseError
 from tkinter import filedialog, Tk
-
-from Product import Product
-
-
-ProductsList = []
 
 def FileChooser():
     FileText = ''
@@ -32,7 +30,6 @@ def FileChooser():
         return None
 
 
-
 if __name__ == '__main__':
     while True:
         Menu = input ('''=============================
@@ -51,7 +48,7 @@ Elige una opción:  ------->  ''')
             Month = False
             Year = False
             Parenth = False
-            DataProducts = ''
+            ProductsList = ''
 
             for Character in ContentDataFile:
 
@@ -69,27 +66,16 @@ Elige una opción:  ------->  ''')
                     Month_n += Character
                 if Month and not Year and Character != ':':
                     Year_n += Character
-                if Parenth and Character != '(' and Character !='[' and Character != ']':
-                    DataProducts += Character
-                    
-            
-            DataProducts = DataProducts.split(';')
-            DataProducts.pop()
+                if Parenth and Character != '(':
+                    ProductsList += Character
 
-            for Prroduct in DataProducts:
+            ProductsList = ProductsList.split(';')
+            for Product in ProductsList:
+                Product.replace(']', '')       
 
-                tmpProduct = Prroduct.split(',')
-                name = tmpProduct[0]
-                price = tmpProduct[1]
-                quant = tmpProduct[2]
-                ProductsList.append(Product(name, price, quant))
-
-            for P in ProductsList:
-                P.presentProduct()
-
-            # print(Month_n)
-            # print(Year_n)
-            # print(DataProducts[1])
+            print(Month_n)
+            print(Year_n)
+            print(ProductsList[1])
 
 
 
