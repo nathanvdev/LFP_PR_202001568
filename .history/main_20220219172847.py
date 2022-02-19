@@ -151,10 +151,6 @@ Elige una opción:  ------->  ''')
                     ZTittleY = True
 
         elif Menu == '3':
-            Plt.close()
-            GraphicX = []
-            GraphicY = []
-
 
             for P in ProductsList:
                 Profit = P.getPrice()*P.getQuant()
@@ -171,9 +167,8 @@ Elige una opción:  ------->  ''')
                 Plt.title(GName.upper())
                 Plt.xlabel(Xtittle.upper())
                 Plt.ylabel(Ytittle.upper())
-                Plt.savefig('./{}.png'.format(GName+'-'+Gtype))
-                print(GName+'-'+Gtype)
-                imgLinea = Image.open('./{}.png'.format(GName+'-'+Gtype))
+                Plt.savefig('./{}.png'.format(GName,'-',Gtype))
+                imgLinea = Image.open('./{}.png'.format(GName,'-',Gtype))
                 imgLinea.show()
 
             elif Gtype == 'pie':
@@ -185,8 +180,8 @@ Elige una opción:  ------->  ''')
                 Plt.title(GName.upper())
                 Plt.xlabel(str(Xtittle).upper(), labelpad=20)
                 Plt.ylabel(Ytittle.upper(), labelpad=80)
-                Plt.savefig('./{}.png'.format(GName+'-'+Gtype))
-                imgLinea = Image.open('./{}.png'.format(GName+'-'+Gtype))
+                Plt.savefig('./{}.png'.format(GName,'-',Gtype))
+                imgLinea = Image.open('./{}.png'.format(GName,'-',Gtype))
                 imgLinea.show()
                 
 
@@ -198,8 +193,8 @@ Elige una opción:  ------->  ''')
                 Plt.title(GName.upper())
                 Plt.xlabel(Xtittle.upper())
                 Plt.ylabel(Ytittle.upper())
-                Plt.savefig('./{}.png'.format(GName+'-'+Gtype))
-                imgLinea = Image.open('./{}.png'.format(GName+'-'+Gtype))
+                Plt.savefig('./{}.png'.format(GName,'-',Gtype))
+                imgLinea = Image.open('./{}.png'.format(GName,'-',Gtype))
                 imgLinea.show()
 
             else:

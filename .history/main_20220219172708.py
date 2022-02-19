@@ -151,10 +151,6 @@ Elige una opción:  ------->  ''')
                     ZTittleY = True
 
         elif Menu == '3':
-            Plt.close()
-            GraphicX = []
-            GraphicY = []
-
 
             for P in ProductsList:
                 Profit = P.getPrice()*P.getQuant()
@@ -166,40 +162,39 @@ Elige una opción:  ------->  ''')
 
                 print(GraphicX)
                 print(GraphicY)
-                print('-Titulo: ', GName, ' -x ', Xtittle, ' -y ',Ytittle)
+                print('-Titulo: ', Gtittle, ' -x ', Xtittle, ' -y ',Ytittle)
                 Plt.bar(GraphicX, GraphicY)
-                Plt.title(GName.upper())
+                Plt.title(Gtittle.upper())
                 Plt.xlabel(Xtittle.upper())
                 Plt.ylabel(Ytittle.upper())
-                Plt.savefig('./{}.png'.format(GName+'-'+Gtype))
-                print(GName+'-'+Gtype)
-                imgLinea = Image.open('./{}.png'.format(GName+'-'+Gtype))
+                Plt.savefig('./{}.png'.format(Gtittle))
+                imgLinea = Image.open('./{}.png'.format(Gtittle,'-',Gtype))
                 imgLinea.show()
 
             elif Gtype == 'pie':
 
                 print(GraphicX)
                 print(GraphicY)
-                print('-Titulo: ', GName, ' -x ', Xtittle, ' -y ',Ytittle)
+                print('-Titulo: ', Gtittle, ' -x ', Xtittle, ' -y ',Ytittle)
                 Plt.pie(GraphicY ,labels=GraphicX, autopct='%0.1f%%', pctdistance=0.8, shadow=True, startangle=90, rotatelabels=False)
-                Plt.title(GName.upper())
+                Plt.title(Gtittle.upper())
                 Plt.xlabel(str(Xtittle).upper(), labelpad=20)
                 Plt.ylabel(Ytittle.upper(), labelpad=80)
-                Plt.savefig('./{}.png'.format(GName+'-'+Gtype))
-                imgLinea = Image.open('./{}.png'.format(GName+'-'+Gtype))
+                Plt.savefig('./{}.png'.format(Gtittle))
+                imgLinea = Image.open('./{}.png'.format(Gtittle,'-',Gtype))
                 imgLinea.show()
                 
 
             elif Gtype == 'lã ­neas' or 'lineas':
                 print(GraphicX)
                 print(GraphicY)
-                print('-Titulo: ', GName, ' -x ', Xtittle, ' -y ',Ytittle)
+                print('-Titulo: ', Gtittle, ' -x ', Xtittle, ' -y ',Ytittle)
                 Plt.plot(GraphicX,GraphicY)
-                Plt.title(GName.upper())
+                Plt.title(Gtittle.upper())
                 Plt.xlabel(Xtittle.upper())
                 Plt.ylabel(Ytittle.upper())
-                Plt.savefig('./{}.png'.format(GName+'-'+Gtype))
-                imgLinea = Image.open('./{}.png'.format(GName+'-'+Gtype))
+                Plt.savefig('./{}.png'.format(Gtittle))
+                imgLinea = Image.open('./{}.png'.format(Gtittle,'-',Gtype))
                 imgLinea.show()
 
             else:

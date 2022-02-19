@@ -152,10 +152,6 @@ Elige una opción:  ------->  ''')
 
         elif Menu == '3':
             Plt.close()
-            GraphicX = []
-            GraphicY = []
-
-
             for P in ProductsList:
                 Profit = P.getPrice()*P.getQuant()
                 Profit = round(Profit, 2)

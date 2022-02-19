@@ -1,9 +1,8 @@
-from ast import Gt
 from tkinter import filedialog, Tk
 import matplotlib.pyplot as Plt
 from Product import Product
 from Instructions import Graphic
-from PIL import Image
+# from PIL import Image
 
 Month_n = ''
 Year_n = ''
@@ -19,20 +18,21 @@ GraphicX = []
 GraphicY = []
 
 
-def FileChooser(Type):
+def FileChooser():
     FileText = ''
     text = ''
     Tk().withdraw()
     try:
-        # filename = 'F:/Bibliotecas/Documents/U/2022/Primer Semestre/Lab Lenguajes/Proyectos/LFP_PR_202001568/prueba1.data'
+        filename = 'F:/Bibliotecas/Documents/U/2022/Primer Semestre/Lab Lenguajes/Proyectos/LFP_PR_202001568/prueba1.data'
         # filename = 'F:/Bibliotecas/Documents/U/2022/Primer Semestre/Lab Lenguajes/Proyectos/LFP_PR_202001568/InstruccionesPrueba.lfp'
-        filename = filedialog.askopenfilename(
-            initialdir = './',
-            title = 'Selecciona un archivo',
-            filetypes = (('Archivos data', "*.{}".format(Type)),
-                         ('Todos los archivos', '*.*'))
-        )
-        print(filename)
+        # filename = filedialog.askopenfilename(
+        #     initialdir = './',
+        #     title = 'Selecciona un archivo',
+        #     filetypes = (('Archivos data', '*.data'),
+        #                  ('Archivos lfp', '*.lfp'),
+        #                  ('Todos los archivos', '*.*'))
+        # )
+        # print(filename)
         with open(filename) as infile:
                 FileText = infile.read().strip()
                 FileText = FileText.lower()
@@ -60,7 +60,7 @@ if __name__ == '__main__':
 Elige una opción:  ------->  ''')
 
         if Menu == '1':
-            ContentDataFile = FileChooser('data')
+            ContentDataFile = FileChooser()
             Month = False
             Year = False
             Parenth = False
@@ -99,19 +99,14 @@ Elige una opción:  ------->  ''')
 
         elif Menu == '2':
 
-            GName = ''
-            Gtype = ''
-            Gtittle = ''
-            Xtittle = ''
-            Ytittle = ''
-
-            InstructionsData = FileChooser('lfp')
+            InstructionsData = FileChooser()
             Instructions = ''
             for Character in InstructionsData:
                 if Character != '<' and Character != '¿'and Character != '?'and Character != '>' and Character != 'â':
                     Instructions += Character
             
             Instructions = Instructions.split(',')
+            print(Instructions)
 
             ZName = False
             ZGraphic = False
@@ -119,9 +114,12 @@ Elige una opción:  ------->  ''')
             ZTittleX = False
             ZTittleY = False
 
+            
+
+            
+
             for g in Instructions:
                 if not g.find('nombre') and not ZName:
-                    print(g)
                     tmp = g.split(":")
                     GName = tmp[1]
                     ZName = True
@@ -147,64 +145,21 @@ Elige una opción:  ------->  ''')
                 if not g.find('tituloy') and not ZTittleY:
                     tmp = g.split(":")
                     print('--tituloy ',tmp[1])
-                    Ytittle = tmp[1]
+                    Ytittle =tmp[1]
                     ZTittleY = True
 
         elif Menu == '3':
-            Plt.close()
-            GraphicX = []
-            GraphicY = []
-
 
             for P in ProductsList:
-                Profit = P.getPrice()*P.getQuant()
-                Profit = round(Profit, 2)
+                print(P.getName()," ",P.getPrice()," ",P.getQuant())
+                
+                Profit = round(P.getPrice()*P.getQuant(), 2)
+                print(Profit)
                 GraphicX.append(P.getName())
                 GraphicY.append(Profit)
 
-            if Gtype == 'barras':
-
-                print(GraphicX)
-                print(GraphicY)
-                print('-Titulo: ', GName, ' -x ', Xtittle, ' -y ',Ytittle)
-                Plt.bar(GraphicX, GraphicY)
-                Plt.title(GName.upper())
-                Plt.xlabel(Xtittle.upper())
-                Plt.ylabel(Ytittle.upper())
-                Plt.savefig('./{}.png'.format(GName+'-'+Gtype))
-                print(GName+'-'+Gtype)
-                imgLinea = Image.open('./{}.png'.format(GName+'-'+Gtype))
-                imgLinea.show()
-
-            elif Gtype == 'pie':
-
-                print(GraphicX)
-                print(GraphicY)
-                print('-Titulo: ', GName, ' -x ', Xtittle, ' -y ',Ytittle)
-                Plt.pie(GraphicY ,labels=GraphicX, autopct='%0.1f%%', pctdistance=0.8, shadow=True, startangle=90, rotatelabels=False)
-                Plt.title(GName.upper())
-                Plt.xlabel(str(Xtittle).upper(), labelpad=20)
-                Plt.ylabel(Ytittle.upper(), labelpad=80)
-                Plt.savefig('./{}.png'.format(GName+'-'+Gtype))
-                imgLinea = Image.open('./{}.png'.format(GName+'-'+Gtype))
-                imgLinea.show()
-                
-
-            elif Gtype == 'lã ­neas' or 'lineas':
-                print(GraphicX)
-                print(GraphicY)
-                print('-Titulo: ', GName, ' -x ', Xtittle, ' -y ',Ytittle)
-                Plt.plot(GraphicX,GraphicY)
-                Plt.title(GName.upper())
-                Plt.xlabel(Xtittle.upper())
-                Plt.ylabel(Ytittle.upper())
-                Plt.savefig('./{}.png'.format(GName+'-'+Gtype))
-                imgLinea = Image.open('./{}.png'.format(GName+'-'+Gtype))
-                imgLinea.show()
-
-            else:
-                print('Por favor indica el tipo de grafica que deseas')
-
+            print(GraphicX)
+            print(GraphicY)
 
 
 
