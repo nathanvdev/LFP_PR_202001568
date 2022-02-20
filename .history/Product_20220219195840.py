@@ -4,7 +4,7 @@ class Product:
         self.Name = str(name)
         self.Price = float(price)
         self.Quant = int(quant)
-        self.Ganancia = float(self.Price*self.Quant)
+        self.Ganancia = (self.Price*self.Quant)
         self.Ganancia = round(self.Ganancia, 2)
 
 
@@ -30,5 +30,4 @@ class Product:
         return self.Ganancia
 
     def presentProduct(self):
-        print('Nombre: ', self.Name, ' Precio: ', self.Price, 
-        ' Cantidad: ', self.Quant, ' -ganancia ', self.Ganancia)
+        print('Nombre: ', self.Name, ' Precio: ', self.Price, ' Cantidad: ', self.Quant, ' -ganancia ', self.Ganancia)

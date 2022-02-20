@@ -235,14 +235,13 @@ Elige una opción:  ------->  ''')
             MenosVendido = Ventas[len(Ventas)-1].getName()
             print(MasVendido)
             print(MenosVendido)
-            
 
-            arvg = Environment(loader=FileSystemLoader('Plantilla/'), autoescape = select_autoescape(['html']))
+            cacapopo = Environment(loader=FileSystemLoader('Plantilla/'), autoescape = select_autoescape(['html']))
             
-            template = arvg.get_template('plantilla.html')
+            template = cacapopo.get_template('plantilla.html')
 
             html_file = open('index.html', 'w+', encoding='utf-8')
-            html_file.write(template.render(MasVendido = MasVendido,MenosVendido = MenosVendido, ListaGancia = ListaGancia))
+            html_file.write(template.render(Ventas = Ventas))
             html_file.close()
 
             startfile('index.html')

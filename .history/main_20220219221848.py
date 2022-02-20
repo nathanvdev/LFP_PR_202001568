@@ -235,7 +235,6 @@ Elige una opción:  ------->  ''')
             MenosVendido = Ventas[len(Ventas)-1].getName()
             print(MasVendido)
             print(MenosVendido)
-            
 
             arvg = Environment(loader=FileSystemLoader('Plantilla/'), autoescape = select_autoescape(['html']))
             

@@ -1,9 +1,11 @@
 from os import startfile
-from tkinter import Tk, filedialog
-from jinja2 import Environment, FileSystemLoader, select_autoescape
-from Product import Product
+from tkinter import filedialog, Tk
 import matplotlib.pyplot as Plt
+from Product import Product
+from Instructions import Graphic
 from PIL import Image
+from jinja2 import Environment, select_autoescape
+from jinja2.loaders import FileSystemLoader
 
 Month_n = ''
 Year_n = ''
@@ -15,8 +17,6 @@ Xtittle = ''
 Ytittle = ''
 
 ProductsList = []
-ListaGancia = []
-Ventas = []
 
 
 
@@ -210,7 +210,6 @@ Elige una opción:  ------->  ''')
 
 
         elif Menu == '4':
-            
             ListaGancia = ProductsList.copy()
             Ventas = ProductsList.copy()
          
@@ -231,21 +230,20 @@ Elige una opción:  ------->  ''')
             for p in ListaGancia:
                 print(p.getGanancia())
             print('--------')
-            MasVendido = Ventas[0].getName()
-            MenosVendido = Ventas[len(Ventas)-1].getName()
-            print(MasVendido)
-            print(MenosVendido)
-            
 
-            arvg = Environment(loader=FileSystemLoader('Plantilla/'), autoescape = select_autoescape(['html']))
-            
-            template = arvg.get_template('plantilla.html')
+            print(Ventas[0].getQuant())
+            print(Ventas[len(Ventas)-1].getQuant())
 
-            html_file = open('index.html', 'w+', encoding='utf-8')
-            html_file.write(template.render(MasVendido = MasVendido,MenosVendido = MenosVendido, ListaGancia = ListaGancia))
+            send = Environment(loader=FileSystemLoader('Plantilla/'),
+                                autoescape =select_autoescape(['html']))
+            
+            template = send.get_template('plantilla.html')
+
+            html_file = open('Reporte.html', 'w+', encoding='utf-8')
+            html_file.write(template.render(ListaGancia = ListaGancia, Ventas = Ventas))
             html_file.close()
 
-            startfile('index.html')
+            startfile('Reporte.html')
 
         elif Menu == '5':
             print('\nGracias por utilizar este programa')
